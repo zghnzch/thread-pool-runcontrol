@@ -8,6 +8,7 @@ import java.util.concurrent.*;
  * 1,支持往执行线程添加线程变量
  * <p>
  * 2,支持相同key的任务串行执行
+ *
  * @author atlas
  * @date 2013-8-9
  */
@@ -54,11 +55,12 @@ public class MixTimeScheduler extends DefaultTimeScheduler implements RichTimeSc
 	/**
 	 * 推荐使用这个方法创建：线程池具有[corePoolSize,maximumPoolSize]个线程，采用同步队列SynchronousQueue，
 	 * 由调用者提供RejectedExecutionHandler
-	 * @param corePoolSize
-	 * @param maximumPoolSize
-	 * @param name
-	 * @param handler
-	 * @return
+	 *
+	 * @param corePoolSize    int
+	 * @param maximumPoolSize int
+	 * @param name            String
+	 * @param handler         RejectedExecutionHandler
+	 * @return MixTimeScheduler
 	 */
 	public static MixTimeScheduler newCachedThreadPool(int corePoolSize, int maximumPoolSize, String name, RejectedExecutionHandler handler) {
 		MixTimeScheduler mixTimeScheduler = new MixTimeScheduler(corePoolSize, maximumPoolSize, 60L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>(), new NamedThreadFactory(name));
@@ -105,8 +107,9 @@ public class MixTimeScheduler extends DefaultTimeScheduler implements RichTimeSc
 	}
 	/**
 	 * 将多个任务打包成一个串行执行的任务
-	 * @param jobs
-	 * @return
+	 *
+	 * @param jobs List<Runnable>
+	 * @return Runnable
 	 */
 	public static Runnable packSequentialJob(final List<Runnable> jobs) {
 		if (jobs.size() == 1) {
@@ -130,9 +133,10 @@ public class MixTimeScheduler extends DefaultTimeScheduler implements RichTimeSc
 	}
 	/**
 	 * schedule a one-shot job
+	 *
 	 * @param name
 	 * @param command
-	 * @param delay milliseconds
+	 * @param delay   milliseconds
 	 * @return
 	 */
 	@Override

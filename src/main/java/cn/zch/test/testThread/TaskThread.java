@@ -14,14 +14,18 @@ import org.apache.log4j.Logger;
 public class TaskThread implements Runnable {
 	private final static Logger myLog = Logger.getRootLogger();
 	private String masterName;
-	TaskThread(String masterName) {
+	private Integer count;
+	TaskThread(String masterName,Integer count) {
 		this.masterName = masterName;
+		this.count = count;
 	}
 	@Override
 	public void run() {
 			try {
-				Thread.sleep(2000);
-				myLog.info(DateUtil.now()+"============"+masterName);
+				Thread.sleep(200);
+				// myLog.info(DateUtil.now()+"============"+masterName);
+				count = count+1;
+				System.out.println(DateUtil.now()+"============"+masterName+"======="+count);
 			}
 			catch (Exception e) {
 				myLog.error(e);

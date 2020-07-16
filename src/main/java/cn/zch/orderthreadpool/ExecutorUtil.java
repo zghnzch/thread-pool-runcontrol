@@ -1,4 +1,7 @@
 package cn.zch.orderthreadpool;
+/**
+ * @author zchcpy
+ */
 public class ExecutorUtil {
 	public static RichTimeScheduler getInstance() {
 		return LazyHolder.INSTANCE;

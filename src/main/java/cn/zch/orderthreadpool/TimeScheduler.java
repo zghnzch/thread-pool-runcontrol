@@ -6,5 +6,10 @@ import java.util.concurrent.ScheduledExecutorService;
  * @date 2013-8-8
  */
 public interface TimeScheduler extends ScheduledExecutorService {
+	/**
+	 * scheduleWithDynamicInterval
+	 * @param task DynamicIntervalTask
+	 * @return Future<?>
+	 */
 	Future<?> scheduleWithDynamicInterval(DynamicIntervalTask task);
 }

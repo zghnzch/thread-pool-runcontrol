@@ -14,18 +14,33 @@ import org.omg.PortableServer.THREAD_POLICY_ID;
 public class ThreadTest {
 	public static void main(String[] args) {
 		ThreadTest t = new ThreadTest();
-		t.testTask();
+		// t.testTask();
+		t.testTaskB();
 	}
 	private void testTask() {
-		for (int i = 0; i < 3; i++) {
-			try {
-				ExecutorUtil.getInstance().executeSequentially("U#A", new TaskThread("A"));
-				ExecutorUtil.getInstance().executeSequentially("U#B", new TaskThread("B"));
-				Thread.sleep(100);
+		try {
+			for (int i = 0; i < 50; i++) {
+				ExecutorUtil.getInstance().executeSequentially("U#A", new TaskThread("A", i));
+				// ExecutorUtil.getInstance().executeSequentially("U#B", new TaskThread("B", i));
 			}
-			catch (InterruptedException e) {
-				e.printStackTrace();
+			Thread.sleep(1000);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	private void testTaskB() {
+		try {
+			for (int i = 0; i < 50; i++) {
+				Thread t = new Thread(new TaskThread("A", i));
+				t.start();
+//				Thread t2 = new Thread(new TaskThread("B", i));
+//				t2.start();
 			}
+			Thread.sleep(1000);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

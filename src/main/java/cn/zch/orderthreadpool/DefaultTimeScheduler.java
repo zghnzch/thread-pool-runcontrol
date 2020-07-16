@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * <p/>
  * 1,使调度线程池和普通线程池可以共享线程，又不会有
  * {@link ScheduledThreadPoolExecutor}
- * 的固定大小的限制，这个线程池有一个分发线程，会把到期的任务提交给父线程池执行。 大部分代码来自JDK的
+ * 的固定大小的限制，这个线程池有一个分发线程，会把到期的任务提交给父线程池执行。 大部分代码来自 JDK 的
  * {@link ScheduledThreadPoolExecutor}.<br/>
  * 对于具有大量定时任务和异步任务，让它们可以共享线程池是个比较好的选择
  * <p/>

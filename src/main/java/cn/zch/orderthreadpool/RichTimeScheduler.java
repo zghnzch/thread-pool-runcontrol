@@ -72,9 +72,9 @@ public interface RichTimeScheduler extends TimeScheduler {
 	<T> Future<T> executeSequentially(Object key, List<Runnable> jobs);
 	/**
 	 * 具有相同key的Runnable有序串行执行,延迟delay毫秒后放入线程池
-	 * @param key
-	 * @param r
-	 * @param delay
+	 * @param key Object
+	 * @param r Runnable
+	 * @param delay int
 	 */
 	void executeSequentially(Object key, Runnable r, int delay);
 }
